@@ -18,7 +18,17 @@ namespace Business.ValidationRules.FluentValidation
             RuleFor(p => p.UnitPrice).GreaterThan(0);
             RuleFor(p => p.UnitPrice).GreaterThanOrEqualTo(10).When(p=>p.CategoryId == 1);
             RuleFor(p => p.ProductName).Must(StartWithA);
+            RuleFor(p => p.CategoryId).Must(MaxTenProduct);
 
+        }
+
+        private bool MaxTenProduct(int arg)
+        {
+            if(arg >= 10)
+            {
+                throw new ArgumentException("En fazla 10 ürün olabilir");
+            }
+            return true;
         }
 
         private bool StartWithA(string arg)
