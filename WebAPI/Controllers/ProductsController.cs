@@ -1,8 +1,5 @@
 ﻿using Business.Abstract;
-using Business.Concrete;
-using DataAccess.Concrete.Entity_Framework;
 using Entities.Concrete;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
@@ -13,11 +10,11 @@ namespace WebAPI.Controllers
     {
         //Inversion of Control -- IOC
         private IProductService _productService;
-        public ProductsController(IProductService productService) 
+        public ProductsController(IProductService productService)
         {
             _productService = productService;
         }
-       
+
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
@@ -30,10 +27,10 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getbyid")]
-        public IActionResult GetById(int id) 
+        public IActionResult GetById(int id)
         {
             var result = _productService.GetById(id);
-            if (result.IsSuccess) 
+            if (result.IsSuccess)
             {
                 return Ok(result);
             }
@@ -50,6 +47,6 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-          
+
     }
 }

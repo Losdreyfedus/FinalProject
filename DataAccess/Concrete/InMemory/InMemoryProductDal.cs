@@ -2,12 +2,7 @@
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.InMemory
 {
@@ -30,8 +25,8 @@ namespace DataAccess.Concrete.InMemory
 
         public void Delete(Product product)
         {
-           Product productToDelete = _products.SingleOrDefault(p=>p.ProductId == product.ProductId);
-           _products.Remove(productToDelete); 
+            Product productToDelete = _products.SingleOrDefault(p => p.ProductId == product.ProductId);
+            _products.Remove(productToDelete);
         }
 
         public Product Get(Expression<Func<Product, bool>> filter)
